@@ -12,12 +12,13 @@ package src;
 
 public class StackOperations {
 
-    public static int findMin(Stack stack, boolean pop)
-    {    
+    public int findMin(Stack stack, boolean pop)
+    {   
         Stack temporaryStack = new Stack(stack.size());
         int minElement = stack.pop();
         temporaryStack.push(minElement);
 
+        // find minimum element
         while(!stack.isEmpty())
         {
             int currentElement = stack.pop();
@@ -29,13 +30,12 @@ public class StackOperations {
             }
         }
 
-        boolean isPopped = false;
+        // remove all minimum elements from stack
         while(!temporaryStack.isEmpty())
         {
             int currentElement = temporaryStack.pop();
 
-            if(pop & !isPopped & currentElement == minElement){
-                isPopped = true;
+            if(pop & currentElement == minElement){
                 continue;
             }
             
@@ -44,16 +44,16 @@ public class StackOperations {
         
         return minElement;
     }
-    public static int findMin(Stack stack)
+    public int findMin(Stack stack)
     {
         return findMin(stack, false);
     }
-    public static int popMin(Stack stack)
+    public int popMin(Stack stack)
     {
         return findMin(stack, true);
     }
     
-    public static Stack copyStack(Stack stack)
+    public Stack copyStack(Stack stack)
     {
         Stack tempStack = new Stack(stack.size());
         Stack resultStack = new Stack(stack.size());
@@ -76,7 +76,7 @@ public class StackOperations {
         return resultStack;
     }
     
-    public static Stack sortStack(Stack stack, boolean isAscending)
+    public Stack sortStack(Stack stack, boolean isAscending)
     {
         Stack descendingStack = new Stack(stack.size());
         Stack copiedStack = copyStack(stack);   // protect original stack
@@ -105,11 +105,11 @@ public class StackOperations {
         }
 
     }
-    public static Stack sortStack(Stack stack)
+    public Stack sortStack(Stack stack)
     {
         return sortStack(stack, false);
     }
-    public static Stack sortStacks(Stack stack1, Stack stack2, boolean isAscending)
+    public Stack sortStacks(Stack stack1, Stack stack2, boolean isAscending)
     {
         // initialize sorted stack with the size of stacks
         Stack sortedStack = new Stack(stack1.size() + stack2.size());
@@ -144,57 +144,9 @@ public class StackOperations {
 
         return sortedStack;
     }
-    public static Stack sortStacks(Stack stack1, Stack stack2)
+    public Stack sortStacks(Stack stack1, Stack stack2)
     {
         return sortStacks(stack1, stack2, false);
-    }
-    
-    public static void main(String[] args) {
-        
-        // first question region
-        Stack stack = new Stack(8);
-
-        stack.push(8);
-        stack.push(2);
-        stack.push(7);
-        stack.push(5);
-
-        stack.display();
-        System.out.println("~~ initial stack\n");
-
-        popMin(stack);
-
-        stack.display();
-        System.out.println("~~ min popped stack\n");
-
-        
-        // second question region
-        Stack stack2 = new Stack(8);
-
-        stack2.push(9);
-        stack2.push(3);
-        stack2.push(11);
-        stack2.push(23);
-        stack2.push(97);
-        stack2.push(23);
-        stack2.push(42);
-        stack2.push(7);
-
-        stack2.display();
-        System.out.println("~~ initial stack2\n");
-
-        Stack sortedStack = sortStacks(stack, stack2);
-
-        sortedStack.display();
-        System.out.println("~~ sorted stacks\n");
-
-
-        // quality region
-        stack.display();
-        System.out.println("~~ last stack\n");
-
-        stack2.display();
-        System.out.println("~~ last stack2\n");
     }
 
 }

@@ -109,15 +109,16 @@ public class StackOperations {
     {
         return sortStack(stack, false);
     }
-    public Stack sortStacks(Stack stack1, Stack stack2, boolean isAscending)
+    
+    public Stack mergeStacks(Stack stack1, Stack stack2)
     {
-        // initialize sorted stack with the size of stacks
-        Stack sortedStack = new Stack(stack1.size() + stack2.size());
-        
+        // init merge stack with the size of stacks
+        Stack mergeStack = new Stack(stack1.size() + stack2.size());
+
         // to protect original stacks
         Stack copiedStack1 = copyStack(stack1);
         Stack copiedStack2 = copyStack(stack2);
-
+    
         // fill the sorted stack with elements of stacks
         while(true)
         {
@@ -126,20 +127,28 @@ public class StackOperations {
             if(!copiedStack1.isEmpty())
             {
                 element = copiedStack1.pop();
-                sortedStack.push(element);
+                mergeStack.push(element);
                 continue;
             }
             
             if(!copiedStack2.isEmpty()){
                 element = copiedStack2.pop();
-                sortedStack.push(element);
+                mergeStack.push(element);
                 continue;
             }
 
             break;
         }
 
-        // sort
+        return mergeStack;
+    }
+
+    public Stack sortStacks(Stack stack1, Stack stack2, boolean isAscending)
+    {
+        // merge stacks
+        Stack sortedStack = mergeStacks(stack1, stack2);
+
+        // sort stack
         sortedStack = sortStack(sortedStack, isAscending);
 
         return sortedStack;

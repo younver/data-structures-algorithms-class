@@ -1,5 +1,3 @@
-package src;
-
 public class Stack {
     private int top;
     private int[] items;

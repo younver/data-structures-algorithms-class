@@ -1,5 +1,5 @@
-package src;
-public class TestStack {
+
+public class TestStackOperations {
     
     public static void main(String[] args) {
         StackOperations stackOps = new StackOperations();

@@ -1,3 +1,4 @@
+package structures.stack;
 public class Stack {
     private int top;
     private int[] items;

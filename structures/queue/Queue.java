@@ -1,4 +1,4 @@
-package week3.queue;
+package structures.queue;
 
 import java.util.ArrayList;
 

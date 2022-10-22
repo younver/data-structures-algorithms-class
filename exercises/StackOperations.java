@@ -1,4 +1,6 @@
+package structures;
 
+import structures.stack.Stack;
 
 /* 
  * 1 - Write a method or methods to remove the smallest element from the stack. You should

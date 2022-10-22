@@ -1,3 +1,4 @@
+package structures.stack;
 public class GenericStack<T extends Comparable> {
     private T [] items;
     private int top;

@@ -1,6 +1,6 @@
-package week3.exercises;
-import week3.queue.Queue;
-import week3.exercises.GenericStack;
+package exercises;
+import exercises.GenericStack;
+import structures.queue.Queue;
 
 public class Palindrome {
     

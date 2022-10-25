@@ -1,5 +1,5 @@
 package structures.linkedlist;
-import structures.Node;
+import structures.node.Node;
 
 public class LinkedList<T extends Comparable<T>> {
     public Node<T> head;

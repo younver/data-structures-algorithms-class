@@ -1,5 +1,5 @@
 package structures.linkedlist;
-import structures.Node;
+import structures.node.Node;
 
 public class CircularLinkedList<T extends Comparable<T>> {
     Node<T> head;

@@ -1,4 +1,4 @@
-package structures;
+package structures.node;
 
 public class Node<T extends Comparable<T>> {
     public T value;

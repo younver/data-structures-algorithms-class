@@ -1,5 +1,4 @@
-package structures;
-
+package exercises;
 import structures.stack.Stack;
 
 /* 

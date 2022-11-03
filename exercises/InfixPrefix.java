@@ -1,3 +1,6 @@
+package exercises;
+import structures.stack.GenericStack;
+
 public class InfixPrefix {
     public static void main(String[] args) {
         String infixExpression = "a/b*(c+(d-e))";

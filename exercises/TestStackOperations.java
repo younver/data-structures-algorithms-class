@@ -1,3 +1,6 @@
+package exercises;
+
+import structures.stack.Stack;
 
 public class TestStackOperations {
     

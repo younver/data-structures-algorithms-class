@@ -1,6 +1,6 @@
 package exercises;
-import exercises.GenericStack;
 import structures.queue.Queue;
+import structures.stack.GenericStack;
 
 public class Palindrome {
     

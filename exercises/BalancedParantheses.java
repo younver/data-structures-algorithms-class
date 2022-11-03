@@ -1,3 +1,6 @@
+package exercises;
+import structures.stack.GenericStack;
+
 public class BalancedParantheses {
 
     public static int indexInList(String toFind, String[] list){

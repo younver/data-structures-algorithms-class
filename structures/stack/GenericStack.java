@@ -1,5 +1,5 @@
 package structures.stack;
-public class GenericStack<T extends Comparable> {
+public class GenericStack<T extends Comparable<T>> {
     private T [] items;
     private int top;
 

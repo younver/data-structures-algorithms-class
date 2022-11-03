@@ -1,6 +1,6 @@
 package structures.node;
 
-public class Node<T extends Comparable<T>> {
+public class Node<T extends Comparable> {
     public T value;
     public Node<T> next;
 

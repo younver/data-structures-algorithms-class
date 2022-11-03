@@ -1,7 +1,7 @@
 package structures.linkedlist;
 import structures.node.Node;
 
-public class LinkedList<T extends Comparable<T>> {
+public class LinkedList<T extends Comparable> {
     public Node<T> head;
 
     public Node<T> createNode(T val){
@@ -28,9 +28,13 @@ public class LinkedList<T extends Comparable<T>> {
 
     public void display(){
         Node<T> iterator = head;
+
+        if (head == null){
+            System.out.println("~~ linkedlist is empty");
+        }
         
         while(iterator!=null){
-            System.out.println(iterator);
+            System.out.println(iterator.toString());
             iterator = iterator.next;
         }
     }
@@ -95,26 +99,49 @@ public class LinkedList<T extends Comparable<T>> {
         return selectionSort(copy(), new LinkedList<>());
     }
 
-    // requirement: sorted list (ascending)
-    public void sortedAdd(T val, Node<T> tempNode){
-        
-        // if element is smaller than val, addFront
-        if (tempNode.value.compareTo(val) == 1){
-            
-            Node<T> newNode = createNode(val);
-            newNode.next = tempNode;
-            tempNode = newNode;
-            
-            return;
+    public boolean isSorted(Node<T> iterator){
+        // base case
+        if (iterator.next == null){
+            return true;
         }
 
+        // end case
+        if (iterator.value.compareTo(iterator.next.value) != -1){
+            return false;
+        }
+
+        // recurse
+        return isSorted(iterator.next);
+    }
+    public boolean isSorted(){
+        // empty & head case
+        if (head == null || head.next == null){
+            return true;
+        }
+
+        return isSorted(head);
+    }
+
+    // requirement: sorted list (ascending)
+    public void sortedAdd(T val, Node<T> iterator, Node<T> prev){
+
         // if list finished
-        if (tempNode.next == null){
-            tempNode.next = createNode(val);
+        if (iterator == null){
+            prev.next = createNode(val);
             return;
         }
-    
-        sortedAdd(val, tempNode.next);
+        
+        // if element is smaller than val, addFront
+        if (val.compareTo(iterator.value) == -1){
+            
+            Node<T> newNode = createNode(val);
+            newNode.next = iterator;
+            prev.next = newNode;
+            
+            return;
+        }
+        
+        sortedAdd(val, iterator.next, prev.next);
     }
     public void sortedAdd(T val){
 
@@ -124,7 +151,15 @@ public class LinkedList<T extends Comparable<T>> {
             return;
         }
 
-        sortedAdd(val, head);
+        // head case
+        if (head.value.compareTo(val) == 1){
+            Node<T> temp = new Node<T>(val);
+            temp.next = head;
+            head = temp;
+            return;
+        }
+
+        sortedAdd(val, head.next, head);
     }
 
     // count
@@ -236,6 +271,28 @@ public class LinkedList<T extends Comparable<T>> {
         
     }
 
+    // max
+    public T max(){
+        
+        // empty list
+        if (head == null){
+            System.out.println("~~ linkedlist is empty");
+            return null;
+        }
+        
+        Node<T> iterator = head;
+        T max = head.value;
+        while (iterator != null){
+
+            if (iterator.value.compareTo(max) == 1)
+                max = iterator.value;
+
+            iterator = iterator.next;
+        }
+
+        return max;
+    }
+
     // homework-2 methods
     public int searchAnalyze(T val, Node<T> iterator, int count){
         count++;
@@ -278,5 +335,29 @@ public class LinkedList<T extends Comparable<T>> {
         }
 
         return newList;
+    }
+
+    public static void main(String[] args) {
+        LinkedList<Integer> list = new LinkedList<>();
+
+        list.sortedAdd(3);
+        list.sortedAdd(0);
+        list.sortedAdd(8);
+        list.sortedAdd(5);
+        list.sortedAdd(-87);
+        list.sortedAdd(99);
+        list.sortedAdd(-1);
+        list.display();
+
+        System.out.println("~~ is sorted: " + list.isSorted());
+    
+        list.add(5);
+        list.display();
+        System.out.println("~~ is sorted: " + list.isSorted());
+
+        LinkedList<Integer> list1 = new LinkedList<>();
+        list1.add(3);
+        list1.display();
+        System.out.println("~~ is sorted: " + list1.isSorted());
     }
 }

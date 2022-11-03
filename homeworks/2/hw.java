@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import structures.Node;
+import structures.node.Node;
 import structures.linkedlist.LinkedList;
 
 public class hw {

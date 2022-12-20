@@ -6,13 +6,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class hw3 {
+import structures.linkedlist.DoublyLinkedList;
+
+public class StudentProgram {
     
     // ~~design of readFile
-    public static StudentList readStudentFile(String fileName){
+    public static DoublyLinkedList<Student> readStudentFile(String fileName){
         // initialize reader and output dlinkedlist
         File file = new File(fileName);
-        StudentList output = new StudentList();
+        DoublyLinkedList<Student> output = new DoublyLinkedList<>();
         
         // read the file
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -40,11 +42,12 @@ public class hw3 {
     }
     
     public static void main(String[] args) {
+        // init
         Scanner scanner = new Scanner(System.in);
         String PATH = "homeworks/third/students.txt";
 
-        StudentList initialStudentList = readStudentFile(PATH);
-        StudentList studentList = readStudentFile(PATH);
+        DoublyLinkedList<Student> initialStudentList = readStudentFile(PATH);
+        DoublyLinkedList<Student> studentList = readStudentFile(PATH);
     
         // program
         boolean isRunning = true;
@@ -92,6 +95,7 @@ public class hw3 {
                     //~~ ds sorted name display
                     studentList.sortBy("ds");
                     studentList.displayNames();
+                    
                     System.out.println("~~ ds sorted student names");
                     break;
                 case 4:
@@ -103,16 +107,17 @@ public class hw3 {
                     //~~ display students ds lowest
                     Student minStudent = studentList.minBy("ds");
                     if (minStudent != null){
-                        StudentList minStudents = studentList.findBy("ds", minStudent.dsGrade);
+                        DoublyLinkedList<Student> minStudents = studentList.findBy("ds", minStudent.dsGrade);
                         minStudents.display();
                     }
+                    System.out.println("~~ students with lowest ds grade");
                     break;
                 case 6:
                     //~~ delete by id
                     System.out.print("~~ delete student: ");
                     try{
                         int id = Integer.parseInt(scanner.nextLine());
-                        studentList.delete(id);
+                        studentList.deleteByID(id);
                     } catch (NumberFormatException ex){
                         System.out.println("~~ failed: invalid id format");
                     } catch (NullPointerException ez){

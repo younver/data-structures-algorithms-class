@@ -8,6 +8,10 @@ public class LinkedList<T extends Comparable> {
         return new Node<T>(val);
     }
 
+    public boolean isEmpty(){
+        return head == null;
+    }
+
     public void addFront(T val){
         Node<T> newNode = createNode(val);
         newNode.next = head;
@@ -164,40 +168,40 @@ public class LinkedList<T extends Comparable> {
 
     // count
     public int count(T val){
-        int counter = 0;
+        int count = 0;
 
         // handle empty
         if (head == null){
-            return counter;
+            return count;
         }
 
-        // iterate
+        // iterate 
         Node<T> iterator = head;
         while (iterator != null){
             if (iterator.value.compareTo(val) == 0){
-                counter++;
-                iterator = iterator.next;
+                count++;
             }
+            iterator = iterator.next;
         }
 
-        return counter;
+        return count;
     }
     public int count(){
-        int counter = 0;
+        int count = 0;
 
         // handle empty
         if (head == null){
-            return counter;
+            return count;
         }
 
         // iterate
         Node<T> iterator = head;
         while (iterator != null){
-            counter++;
+            count++;
             iterator = iterator.next;
         }
 
-        return counter;
+        return count;
     }
 
     // search
@@ -266,9 +270,14 @@ public class LinkedList<T extends Comparable> {
         prev.next = iterator.next;
     }
 
-    // TODO: multi-delete
-    public void deleteMultiple(T val, int count){
-        
+    public T popFront(){
+        if (isEmpty()){
+            return null;
+        }
+
+        T value = head.value;
+        head = this.head.next;
+        return value;
     }
 
     // max

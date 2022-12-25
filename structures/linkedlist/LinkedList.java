@@ -38,9 +38,10 @@ public class LinkedList<T extends Comparable> {
         }
         
         while(iterator!=null){
-            System.out.println(iterator.toString());
+            System.out.print(iterator.toString() + ", ");
             iterator = iterator.next;
         }
+        System.out.println();
     }
 
     /* enhanced methods */

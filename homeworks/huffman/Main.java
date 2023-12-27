@@ -1,4 +1,4 @@
-package homeworks.fourth;
+package homeworks.huffman;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,7 +10,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HuffmanCoding {
+public class Main {
 
     public static void writeFile(String filePath, String content){
         try (PrintWriter writer = new PrintWriter(filePath, "UTF-8")) {
@@ -96,10 +96,10 @@ public class HuffmanCoding {
 
     public static void main(String[] args) {
         
-        String PATH_LETTER = "homeworks/fourth/letter.txt";
-        String PATH_SOURCE = "homeworks/fourth/source.txt";
-        String PATH_ENCODED = "homeworks/fourth/encoded.txt";
-        String PATH_DECODED = "homeworks/fourth/decoded.txt";
+        String PATH_LETTER = "homeworks/huffman/letter.txt";
+        String PATH_SOURCE = "homeworks/huffman/source.txt";
+        String PATH_ENCODED = "homeworks/huffman/encoded.txt";
+        String PATH_DECODED = "homeworks/huffman/decoded.txt";
 
         //-------------------------------------
 

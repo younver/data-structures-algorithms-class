@@ -1,3 +1,5 @@
+package homeworks.linkedlist;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -6,7 +8,7 @@ import java.io.IOException;
 import structures.node.Node;
 import structures.linkedlist.LinkedList;
 
-public class hw {
+public class Main {
 
     // ~~design of readFile
     public static LinkedList<Integer> readIntegersFile(String fileName){
@@ -36,8 +38,8 @@ public class hw {
 
     public static void main(String[] args) {
         // initialization
-        String sourcePath = "homeworks/2/source.txt";
-        String searchPath = "homeworks/2/search.txt";
+        String sourcePath = "homeworks/linkedlist/source.txt";
+        String searchPath = "homeworks/linkedlist/search.txt";
 
         LinkedList<Integer> uniqueList = new LinkedList<>();
         Node<Integer> iterator = null;

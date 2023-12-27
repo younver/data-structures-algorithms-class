@@ -1,4 +1,4 @@
-package homeworks.fourth;
+package homeworks.huffman;
 
 public class HuffmanNode{
     public String symbol;

@@ -1,4 +1,4 @@
-package homeworks.fourth;
+package homeworks.huffman;
 
 public class HuffmanList {
     public HuffmanNode head;
@@ -8,32 +8,25 @@ public class HuffmanList {
     }
 
     public void sortedAdd(HuffmanNode node, HuffmanNode iterator, HuffmanNode prev){
-
-        // if list finished
         if (iterator == null){
             prev.next = node;
             return;
         }
         
-        // if element is smaller than val, addFront
         if (node.frequency < iterator.frequency){
             node.next = iterator;
             prev.next = node;
-            
             return;
         }
         
         sortedAdd(node, iterator.next, prev.next);
     }
     public void sortedAdd(HuffmanNode node){
-
-        // empty list
         if (head == null){
             head = node;
             return;
         }
 
-        // head case
         if (head.frequency > node.frequency){
             node.next = head;
             head = node;
@@ -46,12 +39,10 @@ public class HuffmanList {
     public int count(){
         int count = 0;
 
-        // handle empty
         if (head == null){
             return count;
         }
 
-        // iterate
         HuffmanNode iterator = head;
         while (iterator != null){
             count++;

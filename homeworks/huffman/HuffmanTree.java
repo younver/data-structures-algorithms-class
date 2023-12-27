@@ -1,70 +1,51 @@
-package homeworks.fourth;
+package homeworks.huffman;
 
 public class HuffmanTree {
     private HuffmanNode root;
 
     public HuffmanTree(HuffmanList list){
-        root = list.popHead();
-
-        while (list.count() > 0){
-            HuffmanNode node = list.popHead();
-
-            String parentSymbol = node.symbol + root.symbol;
-            float parentFrequency = node.frequency + root.frequency;
-
-            HuffmanNode parentNode = new HuffmanNode(parentSymbol, parentFrequency);
-
-            parentNode.right = node;
-            parentNode.left = root;
-
-            root = parentNode;
+        HuffmanNode currentRoot;
+        while (true) {
+            HuffmanNode leftNode = list.popHead();
+            HuffmanNode rightNode = list.popHead();
+            currentRoot = new HuffmanNode(leftNode.symbol + rightNode.symbol, leftNode.frequency + rightNode.frequency);
+            currentRoot.left = leftNode;
+            currentRoot.right = rightNode;
+            if (list.isEmpty())
+                break;
+            list.sortedAdd(currentRoot);
         }
+        root = currentRoot;
     }
 
     public String decode(String encodedSymbol){
-        
         String decodedSymbol = "";
         HuffmanNode iterator = root;
-
-        // traverse the encoded symbol
-        for (int i=0; i < encodedSymbol.length(); i++){
-            char currentCharacter = encodedSymbol.charAt(i);
-
-            if (currentCharacter == '0'){
+        for (char c : encodedSymbol.toCharArray()){
+            if (c == '0'){
                 iterator = iterator.left;
             }
-            else if (currentCharacter == '1'){
+            else {
                 iterator = iterator.right;
             }
-
             if (iterator.symbol.length() == 1){
                 decodedSymbol += iterator.symbol;
                 iterator = root;
             }
         }
-
         return decodedSymbol;
     }
 
     public String encode(String symbol){
-
-        if (symbol.compareTo("")==0){
-            return "";
-        }
-
         String encodedSymbol = "";
-        
-        // traverse the symbol
-        for (int i=0; i < symbol.length(); i++){
-            String character = String.valueOf(symbol.charAt(i));
-            
+        for (char c : symbol.toCharArray()){
+            String character = String.valueOf(c);
+
             HuffmanNode iterator = root;
             while(iterator != null){
-                if (iterator.symbol.compareTo(character)==0){
+                if (iterator.symbol.length() == 1)
                     break;
-                }
-                
-                if (iterator.left != null & iterator.left.symbol.contains(character)){
+                if (iterator.left != null && iterator.left.symbol.contains(character)){
                     encodedSymbol += "0";
                     iterator = iterator.left;
                 }
@@ -72,10 +53,8 @@ public class HuffmanTree {
                     encodedSymbol += "1";
                     iterator = iterator.right;
                 }
-                
             }
         }
-
         return encodedSymbol;
     }
 
@@ -107,7 +86,7 @@ public class HuffmanTree {
         System.out.println(tree.encode("c"));
         System.out.println(tree.encode("cdab"));
 
-        System.out.println(tree.decode("001"));
+        System.out.println(tree.decode("000110010111"));
         System.out.println(tree.decode("0010110000"));
     }
 }

@@ -1,4 +1,4 @@
-package homeworks.third;
+package homeworks.student;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,9 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import structures.linkedlist.DoublyLinkedList;
-
-public class StudentProgram {
+public class Main {
     
     // ~~design of readFile
     public static DoublyLinkedList<Student> readStudentFile(String fileName){
@@ -44,7 +42,7 @@ public class StudentProgram {
     public static void main(String[] args) {
         // init
         Scanner scanner = new Scanner(System.in);
-        String PATH = "homeworks/third/students.txt";
+        String PATH = "homeworks/student/students.txt";
 
         DoublyLinkedList<Student> initialStudentList = readStudentFile(PATH);
         DoublyLinkedList<Student> studentList = readStudentFile(PATH);

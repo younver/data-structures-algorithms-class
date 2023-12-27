@@ -1,4 +1,4 @@
-package homeworks.third;
+package homeworks.student;
 
 public class Student implements Comparable{
     public int id;
